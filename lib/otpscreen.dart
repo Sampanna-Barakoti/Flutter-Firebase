@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class Otpscreen extends StatefulWidget {
-  const Otpscreen({super.key});
+  String verificationid;
+  Otpscreen({super.key, required this.verificationid});
 
   @override
   State<Otpscreen> createState() => _OtpscreenState();
 }
 
 class _OtpscreenState extends State<Otpscreen> {
+  TextEditingController otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +20,7 @@ class _OtpscreenState extends State<Otpscreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24),
             child: TextField(
+              controller: otpController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: 'Enter OTP',

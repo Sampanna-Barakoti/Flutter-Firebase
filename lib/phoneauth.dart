@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_start/otpscreen.dart';
 import 'package:flutter/material.dart';
 
 class Phoneauth extends StatefulWidget {
@@ -31,7 +34,23 @@ class _PhoneauthState extends State<Phoneauth> {
             ),
           ),
           SizedBox(height: 30),
-          ElevatedButton(onPressed: () {}, child: Text('Verify')),
+          ElevatedButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.verifyPhoneNumber(
+                verificationCompleted: (PhoneAuthCredential credential) {},
+                verificationFailed: (FirebaseAuthException ex) {},
+                codeSent: (String verificationid, int? resendToken) {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Otpscreen()),
+                  // );
+                },
+                codeAutoRetrievalTimeout: (String verificationid) {},
+                phoneNumber: phoneController.text.toString(),
+              );
+            },
+            child: Text('Verify'),
+          ),
         ],
       ),
     );
