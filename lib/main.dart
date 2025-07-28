@@ -5,6 +5,7 @@ import 'package:firebase_start/phoneauth.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
+  //Firebase initialization
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
