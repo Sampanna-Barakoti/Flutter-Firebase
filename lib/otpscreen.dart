@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_start/home.dart';
 import 'package:flutter/material.dart';
 
 class Otpscreen extends StatefulWidget {
@@ -32,7 +36,28 @@ class _OtpscreenState extends State<Otpscreen> {
             ),
           ),
           SizedBox(height: 30),
-          ElevatedButton(onPressed: () {}, child: Text('Submit')),
+          ElevatedButton(
+            onPressed: () async {
+              try {
+                PhoneAuthCredential credential =
+                    await PhoneAuthProvider.credential(
+                      verificationId: widget.verificationid,
+                      smsCode: otpController.text.toString(),
+                    );
+                FirebaseAuth.instance.signInWithCredential(credential).then((
+                  value,
+                ) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                  );
+                });
+              } catch (e) {
+                log(e.toString());
+              }
+            },
+            child: Text('Submit'),
+          ),
         ],
       ),
     );

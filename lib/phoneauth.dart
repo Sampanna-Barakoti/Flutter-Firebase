@@ -23,7 +23,7 @@ class _PhoneauthState extends State<Phoneauth> {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: TextField(
               controller: phoneController,
-              keyboardType: TextInputType.number,
+
               decoration: InputDecoration(
                 hintText: 'Enter your Number',
                 suffixIcon: Icon(Icons.phone),
@@ -37,13 +37,21 @@ class _PhoneauthState extends State<Phoneauth> {
           ElevatedButton(
             onPressed: () async {
               await FirebaseAuth.instance.verifyPhoneNumber(
-                verificationCompleted: (PhoneAuthCredential credential) {},
-                verificationFailed: (FirebaseAuthException ex) {},
+                verificationCompleted: (PhoneAuthCredential credential) {
+                  print("✔ Auto verification completed");
+                },
+                verificationFailed: (FirebaseAuthException ex) {
+                  print("❌ Verification failed: ${ex.message}");
+                },
                 codeSent: (String verificationid, int? resendToken) {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => Otpscreen()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) =>
+                              Otpscreen(verificationid: verificationid),
+                    ),
+                  );
                 },
                 codeAutoRetrievalTimeout: (String verificationid) {},
                 phoneNumber: phoneController.text.toString(),
