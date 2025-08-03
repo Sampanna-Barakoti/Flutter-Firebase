@@ -19,13 +19,18 @@ class _ShowdataState extends State<Showdata> {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.hasData) {
               return ListView.builder(
+                itemCount: snapshot.data?.docs.length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: CircleAvatar(
-                      child: Text("${snapshot.data!.docs[index]['name'][0]}"),
+                      // child: Text("${snapshot.data!.docs[index]['name'][0]}"),
+                      child: Text("${index + 1}"),
+                    ),
+                    title: Text("${snapshot.data!.docs[index]['title']}"),
+                    subtitle: Text(
+                      "${snapshot.data!.docs[index]['description']}",
                     ),
                   );
-                  ;
                 },
               );
             } else if (snapshot.hasError) {
@@ -34,6 +39,8 @@ class _ShowdataState extends State<Showdata> {
           } else {
             return Center(child: CircularProgressIndicator());
           }
+          // Default return to satisfy non-nullable Widget return type
+          return SizedBox.shrink();
         },
       ),
     );
