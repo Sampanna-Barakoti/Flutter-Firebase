@@ -6,4 +6,4 @@ A new Flutter project to learn firebase
 3. Chapter 3- Phone Number Authentication ( OTP generation with Firebase ) Manually due to free version of firebase
 4. Chapter 4- Firebase Cloud Database
 5. Chapter 5- Fetching Data
-6. Chapter 6-
+6. Chapter 6-df
