@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_start/firebase_options.dart';
 // import 'package:firebase_start/home.dart';
-import 'package:firebase_start/phoneauth.dart';
+// import 'package:firebase_start/phoneauth.dart';
 import 'package:firebase_start/showdata.dart';
 import 'package:flutter/material.dart';
 
